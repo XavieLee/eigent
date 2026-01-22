@@ -501,8 +501,11 @@ export default function ChatBox(): JSX.Element {
       return;
     }
     setLoading(true);
-    await chatStore.handleConfirmTask(projectStore.activeProjectId, _taskId);
-    setLoading(false);
+    try {
+      await chatStore.handleConfirmTask(projectStore.activeProjectId, _taskId);
+    } finally {
+      setLoading(false);
+    }
   };
 
   // File selection handler
